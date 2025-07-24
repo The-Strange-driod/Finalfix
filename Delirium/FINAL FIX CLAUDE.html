@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinalFix - Academic Support for Students in Ghana</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-blue: #001f3f;
+            --desert-sand: #EDC9AF;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-text: #111827;
+            --shadow: 0 4px 20px rgba(0, 31, 63, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy-blue);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--desert-sand);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 4px 15px rgba(237, 201, 175, 0.3);
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg) scale(1.1);
+            color: var(--white);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--desert-sand);
+            transform: translateY(-2px);
+            text-shadow: 0 4px 8px rgba(237, 201, 175, 0.3);
+        }
+
+        .cta-btn {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--white);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(237, 201, 175, 0.4);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 31, 63, 0.6), rgba(0, 31, 63, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f2f5" width="1200" height="800"/><g fill="%23ddd"><circle cx="200" cy="150" r="40"/><circle cx="800" cy="250" r="35"/><circle cx="1000" cy="400" r="45"/></g><rect fill="%23eee" x="100" y="300" width="300" height="200" rx="10"/><rect fill="%23e8e8e8" x="150" y="350" width="200" height="15" rx="5"/><rect fill="%23e8e8e8" x="150" y="380" width="150" height="15" rx="5"/><rect fill="%23e8e8e8" x="150" y="410" width="180" height="15" rx="5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--desert-sand);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--navy-blue);
+            box-shadow: 0 15px 40px rgba(237, 201, 175, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy-blue);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--desert-sand);
+        }
+
+        .step:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 31, 63, 0.15);
+        }
+
+        .step:hover .step-icon {
+            transform: rotate(360deg) scale(1.1);
+            background: var(--navy-blue);
+            color: var(--desert-sand);
+        }
+
+        .step-icon {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .step:hover .step-icon::before {
+            left: 100%;
+        }
+
+        .step h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--desert-sand);
+            box-shadow: 0 10px 30px rgba(0, 31, 63, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--desert-sand);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .testimonial::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 31, 63, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 31, 63, 0.15);
+            border-left: 4px solid var(--navy-blue);
+        }
+
+        .testimonial:hover::after {
+            left: 100%;
+        }
+
+        .testimonial:hover .testimonial-author {
+            color: var(--desert-sand);
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--desert-sand);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+
+        .testimonial-school {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--desert-sand), #f4d4a7);
+            transition: width 0.4s ease;
+            z-index: 1;
+        }
+
+        .feature:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(237, 201, 175, 0.3);
+        }
+
+        .feature:hover::before {
+            width: 4px;
+        }
+
+        .feature:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+            background: var(--navy-blue);
+            color: var(--desert-sand);
+        }
+
+        .feature:hover h3 {
+            color: var(--navy-blue);
+        }
+
+        .feature-icon {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--navy-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section .section-title {
+            color: var(--white);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--desert-sand);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--desert-sand);
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(237, 201, 175, 0.3);
+        }
+
+        .social-icons a[href*="whatsapp"]:hover,
+        .social-icons a#social-whatsapp:hover {
+            background: #25D366;
+            color: white;
+        }
+
+        .social-icons a[href*="instagram"]:hover,
+        .social-icons a#social-instagram:hover {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+        }
+
+        .social-icons a[href*="facebook"]:hover,
+        .social-icons a#social-facebook:hover {
+            background: #1877F2;
+            color: white;
+        }
+
+        .social-icons a[href*="twitter"]:hover,
+        .social-icons a#social-twitter:hover {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .social-icons a[href*="mailto"]:hover {
+            background: #EA4335;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps, .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+                /* Testimonial Images */
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover; /* Ensures the image fills the container nicely */
+            border: 3px solid var(--desert-sand); /* Adds a border matching the brand */
+            margin: -40px auto 15px auto; /* Pulls the image up slightly over the top padding */
+            display: block;
+            box-shadow: var(--shadow); /* Adds a subtle shadow */
+            background-color: var(--navy-blue); /* Fallback color if image fails to load */
+            color: var(--desert-sand); /* Color for placeholder text if needed */
+        }
+
+        /* Adjust padding to accommodate the image */
+        .testimonial {
+            padding-top: 60px; /* Increase top padding to make space for the image */
+        }
+
+        /* Adjust text padding if needed */
+        .testimonial-text {
+            padding-top: 0.5rem; /* Reduce padding now that image provides visual separation */
+        }
+
+        /* Optional: Style the author name slightly differently if image is present */
+        .testimonial:hover .testimonial-author {
+            /* You can keep the existing hover effect or adjust it */
+            /* Example: Add text shadow on hover */
+             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    FinalFix
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#cta" class="cta-btn">Get Started</a>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Need Help With Your Project Work, Proposal, or Assignment?</h1>
+                <p>Fast, smart, and reliable academic support for students in Ghana.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" id="google-form-btn">
+                        <i class="fas fa-edit"></i>
+                        Get Started
+                    </a>
+                    <a href="#" class="btn-secondary" id="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How FinalFix Works</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Submit Your Details</h3>
+                    <p>Fill a short form with your needs and deadlines.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>We Get to Work</h3>
+                    <p>Receive weekly updates or just the final document—your call.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Deliver & Polish</h3>
+                    <p>Get the final files, ask for revisions, or request a presentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">What We Help You With</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Project Work Writing</h3>
+                    <p>Complete project support from Chapter 1 to 5 with professional formatting and citations.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Research Proposal</h3>
+                    <p>Expert help with proposal writing, structure, and methodology development.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Topic Generation</h3>
+                    <p>Free topic suggestions when you submit our form - tailored to your field of study.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-cards"></i>
+                    </div>
+                    <h3>PowerPoint Slides</h3>
+                    <p>Professional presentation design for your defense or class presentations.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Assignments</h3>
+                    <p>Quality assignment help across all subjects and academic levels.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Portfolio Development</h3>
+                    <p>Curate your best work and showcase diverse skills through strategic project selection and compelling case studies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--navy-blue);">What Students Say About FinalFix</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial fade-in">
+                     <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix helped me complete my project work in record time. The quality was exceptional and they followed all my supervisor's guidelines perfectly.</p>
+                    <div class="testimonial-author">Kwame Asante</div>
+                    <div class="testimonial-school">University of Ghana, Business Administration</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">I was struggling with my research proposal until I found FinalFix. They provided excellent topic suggestions and helped structure my entire proposal.</p>
+                    <div class="testimonial-author">Ama Osei</div>
+                    <div class="testimonial-school">KNUST, Computer Science</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">The weekly updates kept me informed throughout the process. Professional, reliable, and delivered exactly what I needed for my defense.</p>
+                    <div class="testimonial-author">Joseph Mensah</div>
+                    <div class="testimonial-school">UCC, Marketing</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix was my academic guardian angel! Their 24/7 support and expert proofreading transformed my research paper from stressful to stellar.</p>
+                    <div class="testimonial-author">Kwabena Boateng</div>
+                    <div class="testimonial-school">University of Cape Coast, Environmental Science</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">I owe my First-Class honors to FinalFix. Their dissertation coaching and citation rescue saved me during crunch time - worth every cedi!</p>
+                    <div class="testimonial-author">Efua Ansah</div>
+                    <div class="testimonial-school">Ashesi University, Business Analytics </div>
+                </div>
+
+                <div class="testimonial fade-in">
+                     <img src="https://placehold.co/80x80/001f3f/EDC9AF?text=GA" alt="Grace Adjei" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix created an outstanding portfolio that perfectly showcased my skills. From concept to final design, they captured my professional story beautifully.</p>
+                    <div class="testimonial-author">Grace Adjei</div>
+                    <div class="testimonial-school">GIMPA, Public Administration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section" id="why-choose">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose FinalFix?</h2>
+            <div class="features-grid">
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div>
+                        <h3>Free Topic Suggestions</h3>
+                        <p>Get a relevant research topic when you submit our form</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3>Weekly Updates</h3>
+                        <p>Stay informed with regular progress updates on your project</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div>
+                        <h3>Supervisor Guidelines</h3>
+                        <p>We strictly follow your supervisor's instructions and requirements</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <h3>WhatsApp Support</h3>
+                        <p>Friendly, responsive customer support via WhatsApp</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3>100% Confidential</h3>
+                        <p>Your information and work remain completely private and secure</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h3>Fast Turnaround</h3>
+                        <p>Quick delivery without compromising on quality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" id="cta">
+        <div class="container">
+            <h2 class="section-title fade-in">Ready to Get Started?</h2>
+            <p class="fade-in" style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--desert-sand);">
+                Get a free research topic when you submit your form!
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary" id="main-form-btn">
+                    <i class="fas fa-edit"></i>
+                    Fill the Form Now
+                </a>
+                <a href="#" class="btn-secondary" id="main-whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FinalFix</h3>
+                    <p>Your trusted academic support partner for project work, proposals, and assignments in Ghana.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#" id="footer-form-link">Submit Request</a>
+                    <a href="#" id="footer-whatsapp-link">WhatsApp</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> finalfix4u@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp Business</p>
+                    <div class="social-icons">
+                        <a href="#" id="social-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:finalfix.gh@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="#" id="social-instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" id="social-facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" id="social-twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FinalFix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Google Form and WhatsApp Links
+        // Replace these URLs with your actual Google Form URL and WhatsApp number
+        const GOOGLE_FORM_URL = "https://forms.gle/oQbg6iJc3xs5dJw4A"; // Replace with your actual Google Form URL
+        const WHATSAPP_NUMBER = "233556900119"; // Replace with your actual WhatsApp number (include country code, no + or spaces)
+        const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20FinalFix,%20I%20need%20help%20with%20my%20academic%20work.`;
+
+        // Social Media Links - Replace with your actual social media URLs
+        const INSTAGRAM_URL = "https://instagram.com/finalfix.gh"; // Replace with your Instagram
+        const FACEBOOK_URL = "https://facebook.com/finalfix.gh"; // Replace with your Facebook
+        const TWITTER_URL = "https://twitter.com/finalfix_gh"; // Replace with your Twitter
+
+        // Add event listeners to all form and WhatsApp buttons
+        const formButtons = [
+            'google-form-btn',
+            'main-form-btn',
+            'footer-form-link'
+        ];
+
+        const whatsappButtons = [
+            'whatsapp-btn',
+            'main-whatsapp-btn',
+            'footer-whatsapp-link'
+        ];
+
+        formButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (GOOGLE_FORM_URL && GOOGLE_FORM_URL !== "YOUR_GOOGLE_FORM_URL_HERE") {
+                        window.open(GOOGLE_FORM_URL, '_blank');
+                    } else {
+                        alert('Please update the Google Form URL in the JavaScript code.');
+                    }
+                });
+            }
+        });
+
+        whatsappButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (WHATSAPP_NUMBER && WHATSAPP_NUMBER !== "233XXXXXXXXX") {
+                        window.open(WHATSAPP_URL, '_blank');
+                    } else {
+                        alert('Please update the WhatsApp number in the JavaScript code.');
+                    }
+                });
+            }
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navMenu.style.display = 'none';
+                }
+            });
+        });
+
+        // Social Media Links
+        const socialWhatsApp = document.getElementById('social-whatsapp');
+        const socialInstagram = document.getElementById('social-instagram');
+        const socialFacebook = document.getElementById('social-facebook');
+        const socialTwitter = document.getElementById('social-twitter');
+
+        if (socialWhatsApp) {
+            socialWhatsApp.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (WHATSAPP_NUMBER && WHATSAPP_NUMBER !== "233XXXXXXXXX") {
+                    window.open(WHATSAPP_URL, '_blank');
+                } else {
+                    alert('Please update the WhatsApp number in the JavaScript code.');
+                }
+            });
+        }
+
+        if (socialInstagram) {
+            socialInstagram.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open(INSTAGRAM_URL, '_blank');
+            });
+        }
+
+        if (socialFacebook) {
+            socialFacebook.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open(FACEBOOK_URL, '_blank');
+            });
+        }
+
+        if (socialTwitter) {
+            socialTwitter.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open(TWITTER_URL, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
