@@ -1,0 +1,4508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinalFix - Academic Support for Students in Ghana</title>
+    <meta name="description" content="Professional academic support for Ghanaian students. Get help with project work, research proposals, assignments, and portfolios. Fast, reliable, and confidential.">
+    <meta name="keywords" content="academic help Ghana, project work writing, research proposal, assignment help, university support">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-blue: #001f3f;
+            --desert-sand: #EDC9AF;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-text: #111827;
+            --shadow: 0 4px 20px rgba(0, 31, 63, 0.1);
+            --success-green: #10B981;
+            --accent-orange: #F59E0B;
+            --warning-red: #EF4444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Live Chat Button */
+        .live-chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .live-chat-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--navy-blue);
+            color: var(--desert-sand);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1500;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy-blue);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--desert-sand);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 4px 15px rgba(237, 201, 175, 0.3);
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg) scale(1.1);
+            color: var(--white);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--desert-sand);
+            transform: translateY(-2px);
+            text-shadow: 0 4px 8px rgba(237, 201, 175, 0.3);
+        }
+
+        .cta-btn {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--white);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(237, 201, 175, 0.4);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 31, 63, 0.6), rgba(0, 31, 63, 0.6)), 
+                        url('Background Image.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--desert-sand);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--navy-blue);
+            box-shadow: 0 15px 40px rgba(237, 201, 175, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy-blue);
+        }
+
+        /* Floating Alert Banner */
+        .alert-banner {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--success-green), #059669);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 1100;
+            animation: slideDown 0.5s ease, float 3s ease-in-out infinite 2s;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .alert-banner:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .alert-banner .close-alert {
+            margin-left: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--navy-blue);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(237, 201, 175, 0.05) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(237, 201, 175, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(237, 201, 175, 0.2);
+            box-shadow: 0 20px 50px rgba(237, 201, 175, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--desert-sand);
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: scale(1.2) rotate(360deg);
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--desert-sand);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--light-gray);
+            padding: 5rem 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 31, 63, 0.15);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy-blue);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(237, 201, 175, 0.1);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 200px;
+        }
+
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--desert-sand);
+        }
+
+        .step:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 31, 63, 0.15);
+        }
+
+        .step:hover .step-icon {
+            transform: rotate(360deg) scale(1.1);
+            background: var(--navy-blue);
+            color: var(--desert-sand);
+        }
+
+        .step-icon {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .step:hover .step-icon::before {
+            left: 100%;
+        }
+
+        .step h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Enhanced Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(237, 201, 175, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--desert-sand);
+            box-shadow: 0 15px 40px rgba(0, 31, 63, 0.15);
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--desert-sand);
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--navy-blue);
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-btn {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .service-btn:hover {
+            background: var(--navy-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 31, 63, 0.3);
+        }
+
+        /* Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: var(--navy-blue);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--desert-sand);
+            transform: rotate(90deg);
+        }
+
+        .form-title {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--desert-sand);
+            box-shadow: 0 0 0 3px rgba(237, 201, 175, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--navy-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 31, 63, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            padding-top: 60px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .testimonial::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 31, 63, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 31, 63, 0.15);
+            border-left: 4px solid var(--navy-blue);
+        }
+
+        .testimonial:hover::after {
+            left: 100%;
+        }
+
+        .testimonial:hover .testimonial-author {
+            color: var(--desert-sand);
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--desert-sand);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--desert-sand);
+            margin: -40px auto 15px auto;
+            display: block;
+            box-shadow: var(--shadow);
+            background-color: var(--navy-blue);
+            color: var(--desert-sand);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+
+        .testimonial-school {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--desert-sand), #f4d4a7);
+            transition: width 0.4s ease;
+            z-index: 1;
+        }
+
+        .feature:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(237, 201, 175, 0.3);
+        }
+
+        .feature:hover::before {
+            width: 4px;
+        }
+
+        .feature:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+            background: var(--navy-blue);
+            color: var(--desert-sand);
+        }
+
+        .feature:hover h3 {
+            color: var(--navy-blue);
+        }
+
+        .feature-icon {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--navy-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section .section-title {
+            color: var(--white);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-blue);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--desert-sand);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--desert-sand);
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(237, 201, 175, 0.3);
+        }
+
+        .social-icons a[href*="whatsapp"]:hover,
+        .social-icons a#social-whatsapp:hover {
+            background: #25D366;
+            color: white;
+        }
+
+        .social-icons a[href*="instagram"]:hover,
+        .social-icons a#social-instagram:hover {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+        }
+
+        .social-icons a[href*="facebook"]:hover,
+        .social-icons a#social-facebook:hover {
+            background: #1877F2;
+            color: white;
+        }
+
+        .social-icons a[href*="twitter"]:hover,
+        .social-icons a#social-twitter:hover {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .social-icons a[href*="mailto"]:hover {
+            background: #EA4335;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Counter Animation */
+        .counter {
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Progress Bar for Forms */
+        .form-progress {
+            background: var(--light-gray);
+            height: 4px;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .form-progress-bar {
+            background: linear-gradient(90deg, var(--desert-sand), var(--accent-orange));
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: var(--success-green);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideInFromTop 0.5s ease;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            margin: 0 auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--desert-sand);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps, .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            .alert-banner {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            .live-chat-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+          
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--desert-sand);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--navy-blue);
+        }
+
+
+
+        .close {
+            background: none;
+            border: none;
+            color: var(--navy-blue);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: var(--desert-sand);
+            transform: rotate(90deg);
+        }
+
+        .close:focus {
+            outline: 2px solid var(--desert-sand);
+            outline-offset: 2px;
+        }
+
+
+
+        /* Meet Our Team Section Styles */ 
+        .team-section { 
+            background: var(--white); 
+            padding: 5rem 0; 
+        } 
+        
+        .team-intro { 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        } 
+        
+        .team-intro p { 
+            font-size: 1.1rem; 
+            color: #666; 
+            margin-bottom: 2rem; 
+        } 
+        
+        .team-stats { 
+            display: flex; 
+            justify-content: center; 
+            gap: 3rem; 
+            margin-bottom: 3rem; 
+            flex-wrap: wrap; 
+        } 
+        
+        .team-stat { 
+            text-align: center; 
+        } 
+        
+        .team-stat-number { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: var(--desert-sand); 
+            display: block; 
+        } 
+        
+        .team-stat-label { 
+            font-size: 0.9rem; 
+            color: #666; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        } 
+        
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.5rem; 
+            margin-top: 3rem; 
+        } 
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .team-card { 
+            background: var(--white); 
+            border-radius: 20px; 
+            padding: 2rem; 
+            text-align: center; 
+            box-shadow: var(--shadow); 
+            transition: all 0.4s ease; 
+            position: relative; 
+            overflow: hidden; 
+            border: 2px solid transparent; 
+        } 
+        
+        .team-card::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 100%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(237, 201, 175, 0.1), transparent); 
+            transition: left 0.6s; 
+        } 
+        
+        .team-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--desert-sand); 
+            box-shadow: 0 20px 50px rgba(0, 31, 63, 0.15); 
+        } 
+        
+        .team-card:hover::before { 
+            left: 100%; 
+        } 
+        
+        .team-avatar { 
+            width: 160px; 
+            height: 180px; 
+            border-radius: 50%; 
+            margin: 0 auto 0.1rem; 
+            background: linear-gradient(135deg, var(--navy-blue), var(--desert-sand)); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2.5rem; 
+            color: var(--white); 
+            transition: all 0.4s ease; 
+            position: relative; 
+            overflow: hidden; 
+        } 
+        
+        .team-card:hover .team-avatar { 
+            transform: scale(1.1); 
+            box-shadow: 0 15px 30px rgba(0, 31, 63, 0.2); 
+        } 
+        
+        .team-name { 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            color: var(--navy-blue); 
+            margin-bottom: 0.5rem; 
+        } 
+        
+        .team-role { 
+            color: var(--desert-sand); 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            font-size: 0.9rem; 
+            margin-bottom: 1rem; 
+        } 
+        
+        .team-bio { 
+            color: #666; 
+            line-height: 1.6; 
+            margin-bottom: 1.5rem; 
+        } 
+        
+        .team-specialties { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 0.5rem; 
+            justify-content: center; 
+            margin-bottom: 1.5rem; 
+        } 
+        
+        .specialty-tag { 
+            background: rgba(237, 201, 175, 0.2); 
+            color: var(--navy-blue); 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 15px; 
+            font-size: 0.8rem; 
+            font-weight: 500; 
+        } 
+        
+        .team-contact { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1rem; 
+        } 
+        
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .contact-btn { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+            font-size: 0.9rem; 
+        } 
+        
+        .contact-btn.whatsapp { 
+            background: #25D366; 
+            color: white; 
+        } 
+        
+        .contact-btn.email { 
+            background: #EA4335; 
+            color: white; 
+        } 
+        
+        .contact-btn:hover { 
+            transform: translateY(-3px) scale(1.1); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+        }
+
+
+                /* FAQ Section Styles */
+        .faq-section {
+            background: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .faq-search {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        .faq-search input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            padding-left: 50px;
+        }
+        
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--desert-sand);
+            box-shadow: 0 0 0 3px rgba(237, 201, 175, 0.1);
+        }
+        
+        .faq-search i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--desert-sand);
+            font-size: 1.2rem;
+        }
+        
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .faq-category {
+            background: rgba(237, 201, 175, 0.2);
+            color: var(--navy-blue);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-category:hover, .faq-category.active {
+            background: var(--desert-sand);
+            color: var(--navy-blue);
+        }
+        
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 31, 63, 0.15);
+            border-left-color: var(--desert-sand);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy-blue);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .faq-question:hover {
+            background: rgba(237, 201, 175, 0.1);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--desert-sand);
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding-bottom: 10px;
+        }
+        
+        .faq-no-results {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+        
+        .faq-no-results i {
+            font-size: 2rem;
+            color: var(--navy-blue);
+            margin-bottom: 0.2rem;
+            padding: 0 0.5rem 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert Banner -->
+    <div class="alert-banner" id="alertBanner">
+        <i class="fas fa-gift"></i>
+        Free Topic Suggestions Available - Submit Your Form Today!
+        <span class="close-alert" onclick="closeAlertBanner()">&times;</span>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Live Chat Button -->
+    <button class="live-chat-button" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+        Live Chat
+    </button>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    FinalFix
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#cta" class="cta-btn" onclick="openGeneralModal()">Get Started</a>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Need Help With Your Project Work, Portfolio or Assignment?</h1>
+                <p>Fast, smart, and reliable academic support for students in Ghana. Get professional help with guaranteed quality and on-time delivery.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" onclick="openGeneralModal()">
+                        <i class="fas fa-edit"></i>
+                        Get Started Now
+                    </a>
+                    <a href="#" class="btn-secondary" id="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- General Request Modal -->
+    <div id="generalModal" class="modal">
+        <div class="modal-content">
+            <button type="button" class="close" onclick="closeGeneralModal()" aria-label="Close">
+             &times;
+            </button>
+            <h2 class="form-title">Get Academic Help - FinalFix</h2>
+            
+            <!-- Form Progress Bar -->
+            <div class="form-progress">
+                <div class="form-progress-bar" id="formProgressBar"></div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                Form submitted successfully! You'll be redirected to WhatsApp to complete your request.
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            
+            <form id="generalForm">
+                <div class="form-group">
+                    <label for="generalName">Full Name *</label>
+                    <input type="text" id="generalName" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalEmail">Email Address *</label>
+                    <input type="email" id="generalEmail" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalPhone">Phone Number *</label>
+                    <input type="tel" id="generalPhone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalUniversity">University/Institution *</label>
+                    <select id="generalUniversity" name="university" required>
+                        <option value="">Select your institution</option>
+                        <option value="university-of-ghana">University of Ghana</option>
+                        <option value="knust">KNUST</option>
+                        <option value="ucc">University of Cape Coast</option>
+                        <option value="ashesi">Ashesi University</option>
+                        <option value="gimpa">GIMPA</option>
+                        <option value="uds">University for Development Studies</option>
+                        <option value="uew">University of Education, Winneba</option>
+                        <option value="aamusted">AAMUSTED</option>
+                        <option value="umat">UMaT</option>
+                        <option value="ug-legon">UG Legon</option>
+                        <option value="ug-medical-school">UG Medical School</option>
+                        <option value="wisconsin">Wisconsin International University</option>
+                        <option value="valley-view">Valley View University</option>
+                        <option value="other">Other (specify in details)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalTopic">Topic/Title (if known)</label>
+                    <input type="text" id="generalTopic" name="topic" placeholder="Leave blank if you need topic suggestions">
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalPages">Estimated Pages/Word Count</label>
+                    <select id="generalPages" name="pages">
+                        <option value="">Select approximate length</option>
+                        <option value="1-5">1-5 pages</option>
+                        <option value="6-10">6-10 pages</option>
+                        <option value="11-20">11-20 pages</option>
+                        <option value="21-30">21-30 pages</option>
+                        <option value="31-50">31-50 pages</option>
+                        <option value="50+">50+ pages</option>
+                        <option value="not-sure">Not sure</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalRequirements">Detailed Requirements</label>
+                    <textarea id="generalRequirements" name="requirements" rows="5" 
+                        placeholder="Please provide detailed information about your requirements, supervisor guidelines, format preferences, specific instructions, etc."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalBudget">Budget Range (GHS)</label>
+                    <select id="generalBudget" name="budget">
+                        <option value="">Select budget range</option>
+                        <option value="100-300">GHS 50-100</option>
+                        <option value="300-500">GHS 200-500</option>
+                        <option value="500-800">GHS 500-800</option>
+                        <option value="800-1200">GHS 800-1200</option>
+                        <option value="1200+">GHS 1200+</option>
+                        <option value="discuss">Let's discuss</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="generalUpdates">Progress Updates Preference</label>
+                    <select id="generalUpdates" name="updates">
+                        <option value="weekly">Weekly updates</option>
+                        <option value="milestone">Major milestone updates</option>
+                        <option value="final-only">Final delivery only</option>
+                        <option value="daily">Daily updates (rush orders)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Request Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+            &times;
+            </button>
+            <h2 class="form-title" id="modalTitle">Request Service</h2>
+            
+            <!-- Form Progress Bar -->
+            <div class="form-progress">
+                <div class="form-progress-bar" id="serviceFormProgressBar"></div>
+            </div>
+            
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="university">University/Institution *</label>
+                    <select id="university" name="university" required>
+                        <option value="">Select your institution</option>
+                        <option value="university-of-ghana">University of Ghana</option>
+                        <option value="knust">KNUST</option>
+                        <option value="ucc">University of Cape Coast</option>
+                        <option value="ashesi">Ashesi University</option>
+                        <option value="gimpa">GIMPA</option>
+                        <option value="uds">University for Development Studies</option>
+                        <option value="uew">University of Education, Winneba</option>
+                        <option value="aamusted">AAMUSTED</option>
+                        <option value="umat">UMaT</option>
+                        <option value="ug-legon">UG Legon</option>
+                        <option value="ug-medical-school">UG Medical School</option>
+                        <option value="wisconsin">Wisconsin International University</option>
+                        <option value="valley-view">Valley View University</option>
+                        <option value="other">Other (specify in details)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="level">Academic Level *</label>
+                    <select id="level" name="level" required>
+                        <option value="">Select your level</option>
+                        <option value="undergraduate">Undergraduate</option>
+                        <option value="masters">Masters</option>
+                        <option value="phd">PhD</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="certificate">Certificate</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="program">Program/Course of Study *</label>
+                    <input type="text" id="program" name="program" placeholder="e.g., Computer Science, Business Administration" required>
+                </div>
+                
+                <div class="form-group" id="serviceTypeGroup">
+                    <label for="serviceType">Service Type *</label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">Select service type</option>
+                        <option value="project-work">Project Work (Chapter 1-5)</option>
+                        <option value="research-proposal">Research Proposal</option>
+                        <option value="topic-generation">Topic Generation</option>
+                        <option value="presentation">PowerPoint Presentation</option>
+                        <option value="assignment">Assignment Help</option>
+                        <option value="portfolio">Portfolio Development</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline">Deadline *</label>
+                    <input type="date" id="deadline" name="deadline" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Urgency Level *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select urgency</option>
+                        <option value="standard">Standard (1-2 weeks)</option>
+                        <option value="urgent">Urgent (3-7 days)</option>
+                        <option value="rush">Rush (1-3 days)</option>
+                        <option value="emergency">Emergency (24-48 hours)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="topic">Topic/Title (if known)</label>
+                    <input type="text" id="topic" name="topic" placeholder="Leave blank if you need topic suggestions">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pages">Estimated Pages/Word Count</label>
+                    <select id="pages" name="pages">
+                        <option value="">Select approximate length</option>
+                        <option value="1-5">1-5 pages</option>
+                        <option value="6-10">6-10 pages</option>
+                        <option value="11-20">11-20 pages</option>
+                        <option value="21-30">21-30 pages</option>
+                        <option value="31-50">31-50 pages</option>
+                        <option value="50+">50+ pages</option>
+                        <option value="not-sure">Not sure</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requirements">Detailed Requirements</label>
+                    <textarea id="requirements" name="requirements" rows="5" 
+                        placeholder="Please provide detailed information about your requirements, supervisor guidelines, format preferences, specific instructions, etc." ></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Budget Range (GHS)</label>
+                    <select id="budget" name="budget">
+                        <option value="">Select budget range</option>
+                        <option value="100-300">GHS 50-100</option>
+                        <option value="300-500">GHS 200-500</option>
+                        <option value="500-800">GHS 500-800</option>
+                        <option value="800-1200">GHS 800-1200</option>
+                        <option value="1200+">GHS 1200+</option>
+                        <option value="discuss">Let's discuss</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="updates">Progress Updates Preference</label>
+                    <select id="updates" name="updates">
+                        <option value="weekly">Weekly updates</option>
+                        <option value="milestone">Major milestone updates</option>
+                        <option value="final-only">Final delivery only</option>
+                        <option value="daily">Daily updates (rush orders)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                 <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number counter">500+</div>
+                    <div class="stat-label">Students Helped</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-check"></i>
+                    </div>
+                    <div class="stat-number counter">363+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-number counter">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-number counter">5</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="stat-number counter">96hrs</div>
+                    <div class="stat-label">Average Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How FinalFix Works</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Submit Your Details</h3>
+                    <p>Fill our comprehensive form with your requirements, deadlines, and specific instructions.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>We Get to Work</h3>
+                    <p>Our expert team starts working on your project with regular progress updates.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Quality Delivery</h3>
+                    <p>Receive your completed work with free revisions and presentation support if needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">What We Help You With</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Project Work Writing</h3>
+                    <p>Complete project support from chapter 1-5 with professional formatting, citations, research methodology and references.</p>
+                    <button class="service-btn" onclick="openServiceModal('project')">
+                        <i class="fas fa-edit"></i>
+                        Request Project Help
+                    </button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Research Proposal</h3>
+                    <p>Expert help with proposal writing, literature review, methodology development, and research design.</p>
+                    <button class="service-btn" onclick="openServiceModal('proposal')">
+                        <i class="fas fa-lightbulb"></i>
+                        Get Proposal Help
+                    </button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Topic Generation</h3>
+                    <p>Free topic suggestions when you submit our form - tailored to your field of study and current trends.</p>
+                    <button class="service-btn" onclick="openServiceModal('topic')">
+                        <i class="fas fa-brain"></i>
+                        Get Topic Ideas
+                    </button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>PowerPoint Slides</h3>
+                    <p>Professional presentation design for your defense or class presentations with speaker notes if needed.</p>
+                    <button class="service-btn" onclick="openServiceModal('presentation')">
+                        <i class="fas fa-tv"></i>
+                        Order Slides
+                    </button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Assignments</h3>
+                    <p>Quality assignment help across all subjects and academic levels with plagiarism-free content.</p>
+                    <button class="service-btn" onclick="openServiceModal('assignment')">
+                        <i class="fas fa-tasks"></i>
+                        Submit Assignment
+                    </button>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Portfolio Development</h3>
+                    <p>Curate your best work and showcase diverse skills through strategic project selection and compelling case studies.</p>
+                    <button class="service-btn" onclick="openServiceModal('portfolio')">
+                        <i class="fas fa-briefcase"></i>
+                        Build Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<!-- Project Work Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closeProjectModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Request Project Work Help</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="projectFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="projectSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Project request submitted successfully! You'll be redirected to WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="projectLoadingSpinner"></div>
+        
+        <form id="projectForm">
+            <div class="form-group">
+                <label for="projectName">Full Name *</label>
+                <input type="text" id="projectName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectEmail">Email Address *</label>
+                <input type="email" id="projectEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectPhone">Phone Number *</label>
+                <input type="tel" id="projectPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectUniversity">University/Institution *</label>
+                <select id="projectUniversity" name="university" required>
+                    <option value="">Select your institution</option>
+                    <option value="university-of-ghana">University of Ghana</option>
+                    <option value="knust">KNUST</option>
+                    <option value="ucc">University of Cape Coast</option>
+                    <option value="ashesi">Ashesi University</option>
+                    <option value="gimpa">GIMPA</option>
+                    <option value="uds">University for Development Studies</option>
+                    <option value="uew">University of Education, Winneba</option>
+                    <option value="aamusted">AAMUSTED</option>
+                    <option value="umat">UMaT</option>
+                    <option value="other">Other (specify in requirements)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectLevel">Academic Level *</label>
+                <select id="projectLevel" name="level" required>
+                    <option value="">Select your level</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="masters">Masters</option>
+                    <option value="phd">PhD</option>
+                    <option value="diploma">Diploma</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectProgram">Program/Course of Study *</label>
+                <input type="text" id="projectProgram" name="program" placeholder="e.g., Computer Science, Business Administration" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectType">Project Type *</label>
+                <select id="projectType" name="projectType" required>
+                    <option value="">Select project type</option>
+                    <option value="thesis">Thesis (Full Document)</option>
+                    <option value="dissertation">Dissertation</option>
+                    <option value="capstone">Capstone Project</option>
+                    <option value="research-project">Research Project</option>
+                    <option value="final-year-project">Final Year Project</option>
+                    <option value="group-project">Group Project</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectChapters">Chapters Needed *</label>
+                <select id="projectChapters" name="chapters" required>
+                    <option value="">Select chapters</option>
+                    <option value="all-chapters">All Chapters (1-5)</option>
+                    <option value="chapter-1">Chapter 1 (Introduction)</option>
+                    <option value="chapter-2">Chapter 2 (Literature Review)</option>
+                    <option value="chapter-3">Chapter 3 (Methodology)</option>
+                    <option value="chapter-4">Chapter 4 (Results/Analysis)</option>
+                    <option value="chapter-5">Chapter 5 (Conclusion)</option>
+                    <option value="custom">Custom Selection</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectTopic">Project Topic (if known)</label>
+                <input type="text" id="projectTopic" name="topic" placeholder="Leave blank for topic suggestions">
+            </div>
+            
+            <div class="form-group">
+                <label for="projectPages">Estimated Page Count *</label>
+                <select id="projectPages" name="pages" required>
+                    <option value="">Select page count</option>
+                    <option value="30-50">30-50 pages</option>
+                    <option value="51-70">51-70 pages</option>
+                    <option value="71-100">71-100 pages</option>
+                    <option value="100+">100+ pages</option>
+                    <option value="not-sure">Not sure</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectDeadline">Deadline *</label>
+                <input type="date" id="projectDeadline" name="deadline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectFormat">Formatting Style *</label>
+                <select id="projectFormat" name="format" required>
+                    <option value="">Select format</option>
+                    <option value="apa">APA Style</option>
+                    <option value="harvard">Harvard Style</option>
+                    <option value="mla">MLA Style</option>
+                    <option value="chicago">Chicago Style</option>
+                    <option value="institutional">My Institution's Format</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectRequirements">Detailed Requirements & Supervisor Guidelines</label>
+                <textarea id="projectRequirements" name="requirements" rows="6" 
+                    placeholder="Please provide: supervisor guidelines, specific formatting requirements, research focus areas, methodology preferences, data requirements, reference count, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="projectBudget">Budget Range (GHS)</label>
+                <select id="projectBudget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="500-800">GHS 500-800</option>
+                    <option value="800-1200">GHS 800-1200</option>
+                    <option value="1200-1800">GHS 1200-1800</option>
+                    <option value="1800-2500">GHS 1800-2500</option>
+                    <option value="2500+">GHS 2500+</option>
+                    <option value="discuss">Let's discuss</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Submit Project Request
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Research Proposal Modal -->
+<div id="proposalModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closeProposalModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Request Research Proposal Help</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="proposalFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="proposalSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Proposal request submitted successfully! You'll be redirected to WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="proposalLoadingSpinner"></div>
+        
+        <form id="proposalForm">
+            <div class="form-group">
+                <label for="proposalName">Full Name *</label>
+                <input type="text" id="proposalName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalEmail">Email Address *</label>
+                <input type="email" id="proposalEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalPhone">Phone Number *</label>
+                <input type="tel" id="proposalPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalUniversity">University/Institution *</label>
+                <select id="proposalUniversity" name="university" required>
+                    <option value="">Select your institution</option>
+                    <option value="university-of-ghana">University of Ghana</option>
+                    <option value="knust">KNUST</option>
+                    <option value="ucc">University of Cape Coast</option>
+                    <option value="ashesi">Ashesi University</option>
+                    <option value="gimpa">GIMPA</option>
+                    <option value="uds">University for Development Studies</option>
+                    <option value="uew">University of Education, Winneba</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalLevel">Academic Level *</label>
+                <select id="proposalLevel" name="level" required>
+                    <option value="">Select your level</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="masters">Masters</option>
+                    <option value="phd">PhD</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalField">Field of Study *</label>
+                <input type="text" id="proposalField" name="field" placeholder="e.g., Computer Science, Psychology, Business" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalType">Proposal Type *</label>
+                <select id="proposalType" name="proposalType" required>
+                    <option value="">Select proposal type</option>
+                    <option value="thesis-proposal">Thesis Proposal</option>
+                    <option value="dissertation-proposal">Dissertation Proposal</option>
+                    <option value="research-proposal">Research Proposal</option>
+                    <option value="project-proposal">Project Proposal</option>
+                    <option value="grant-proposal">Grant Proposal</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalTopic">Research Topic (if known)</label>
+                <input type="text" id="proposalTopic" name="topic" placeholder="Leave blank for topic suggestions">
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalResearchArea">Research Area/Focus *</label>
+                <textarea id="proposalResearchArea" name="researchArea" rows="3" 
+                    placeholder="Describe your area of interest or research focus" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalMethodology">Preferred Research Methodology</label>
+                <select id="proposalMethodology" name="methodology">
+                    <option value="">Select methodology</option>
+                    <option value="quantitative">Quantitative</option>
+                    <option value="qualitative">Qualitative</option>
+                    <option value="mixed-methods">Mixed Methods</option>
+                    <option value="not-sure">Not sure - need guidance</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalPages">Expected Length *</label>
+                <select id="proposalPages" name="pages" required>
+                    <option value="">Select length</option>
+                    <option value="5-10">5-10 pages</option>
+                    <option value="10-15">10-15 pages</option>
+                    <option value="15-25">15-25 pages</option>
+                    <option value="25+">25+ pages</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalDeadline">Deadline *</label>
+                <input type="date" id="proposalDeadline" name="deadline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalRequirements">Specific Requirements & Guidelines</label>
+                <textarea id="proposalRequirements" name="requirements" rows="5" 
+                    placeholder="Include: supervisor requirements, institutional guidelines, specific sections needed, reference requirements, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="proposalBudget">Budget Range (GHS)</label>
+                <select id="proposalBudget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="200-400">GHS 200-400</option>
+                    <option value="400-600">GHS 400-600</option>
+                    <option value="600-900">GHS 600-900</option>
+                    <option value="900+">GHS 900+</option>
+                    <option value="discuss">Let's discuss</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Submit Proposal Request
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Topic Generation Modal -->
+<div id="topicModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closeTopicModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Get Topic Suggestions</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="topicFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="topicSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Topic request submitted! You'll receive suggestions via WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="topicLoadingSpinner"></div>
+        
+        <form id="topicForm">
+            <div class="form-group">
+                <label for="topicName">Full Name *</label>
+                <input type="text" id="topicName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicEmail">Email Address *</label>
+                <input type="email" id="topicEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicPhone">Phone Number *</label>
+                <input type="tel" id="topicPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicUniversity">University/Institution *</label>
+                <select id="topicUniversity" name="university" required>
+                    <option value="">Select your institution</option>
+                    <option value="university-of-ghana">University of Ghana</option>
+                    <option value="knust">KNUST</option>
+                    <option value="ucc">University of Cape Coast</option>
+                    <option value="ashesi">Ashesi University</option>
+                    <option value="gimpa">GIMPA</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicLevel">Academic Level *</label>
+                <select id="topicLevel" name="level" required>
+                    <option value="">Select your level</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="masters">Masters</option>
+                    <option value="phd">PhD</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicField">Field of Study *</label>
+                <input type="text" id="topicField" name="field" placeholder="e.g., Computer Science, Business, Psychology" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicInterests">Areas of Interest *</label>
+                <textarea id="topicInterests" name="interests" rows="4" 
+                    placeholder="Describe your areas of interest, what excites you in your field, current trends you've noticed, etc." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicType">Project Type *</label>
+                <select id="topicType" name="projectType" required>
+                    <option value="">Select type</option>
+                    <option value="thesis">Thesis</option>
+                    <option value="dissertation">Dissertation</option>
+                    <option value="research-project">Research Project</option>
+                    <option value="capstone">Capstone Project</option>
+                    <option value="assignment">Major Assignment</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicScope">Preferred Research Scope</label>
+                <select id="topicScope" name="scope">
+                    <option value="">Select scope</option>
+                    <option value="local">Local/Ghana-focused</option>
+                    <option value="african">African context</option>
+                    <option value="global">Global/International</option>
+                    <option value="no-preference">No preference</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicAvoid">Topics to Avoid</label>
+                <textarea id="topicAvoid" name="avoid" rows="2" 
+                    placeholder="Any specific topics, areas, or approaches you want to avoid?"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicCount">Number of Suggestions Needed</label>
+                <select id="topicCount" name="topicCount">
+                    <option value="3">3 topics (Free)</option>
+                    <option value="5">5 topics (+GHS 50)</option>
+                    <option value="10">10 topics (+GHS 100)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topicDeadline">When do you need the topics?</label>
+                <select id="topicDeadline" name="deadline">
+                    <option value="24hrs">Within 24 hours</option>
+                    <option value="48hrs">Within 48 hours</option>
+                    <option value="1week">Within 1 week</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Get Topic Suggestions
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- PowerPoint Presentation Modal -->
+<div id="presentationModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closePresentationModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Order PowerPoint Slides</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="presentationFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="presentationSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Presentation request submitted! You'll be contacted via WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="presentationLoadingSpinner"></div>
+        
+        <form id="presentationForm">
+            <div class="form-group">
+                <label for="presentationName">Full Name *</label>
+                <input type="text" id="presentationName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationEmail">Email Address *</label>
+                <input type="email" id="presentationEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationPhone">Phone Number *</label>
+                <input type="tel" id="presentationPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationUniversity">University/Institution *</label>
+                <select id="presentationUniversity" name="university" required>
+                    <option value="">Select your institution</option>
+                    <option value="university-of-ghana">University of Ghana</option>
+                    <option value="knust">KNUST</option>
+                    <option value="ucc">University of Cape Coast</option>
+                    <option value="ashesi">Ashesi University</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationType">Presentation Type *</label>
+                <select id="presentationType" name="presentationType" required>
+                    <option value="">Select type</option>
+                    <option value="thesis-defense">Thesis Defense</option>
+                    <option value="project-defense">Project Defense</option>
+                    <option value="proposal-presentation">Proposal Presentation</option>
+                    <option value="class-presentation">Class Presentation</option>
+                    <option value="conference-presentation">Conference Presentation</option>
+                    <option value="business-pitch">Business Pitch</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationTopic">Presentation Topic *</label>
+                <input type="text" id="presentationTopic" name="topic" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationDuration">Presentation Duration *</label>
+                <select id="presentationDuration" name="duration" required>
+                    <option value="">Select duration</option>
+                    <option value="5-10mins">5-10 minutes</option>
+                    <option value="10-15mins">10-15 minutes</option>
+                    <option value="15-20mins">15-20 minutes</option>
+                    <option value="20-30mins">20-30 minutes</option>
+                    <option value="30+mins">30+ minutes</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationSlides">Estimated Number of Slides</label>
+                <select id="presentationSlides" name="slides">
+                    <option value="">Select slide count</option>
+                    <option value="5-10">5-10 slides</option>
+                    <option value="10-15">10-15 slides</option>
+                    <option value="15-25">15-25 slides</option>
+                    <option value="25+">25+ slides</option>
+                    <option value="not-sure">Not sure</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationStyle">Design Style Preference</label>
+                <select id="presentationStyle" name="style">
+                    <option value="">Select style</option>
+                    <option value="professional">Professional/Corporate</option>
+                    <option value="academic">Academic/Simple</option>
+                    <option value="creative">Creative/Modern</option>
+                    <option value="minimalist">Minimalist</option>
+                    <option value="institutional">Match my institution's branding</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationContent">Content Details *</label>
+                <textarea id="presentationContent" name="content" rows="5" 
+                    placeholder="Describe the key points, sections, or content you want covered in the presentation. Include any specific requirements from your supervisor or institution." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationExtras">Additional Services</label>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="extras" value="speaker-notes" style="width: auto; margin-right: 0.5rem;">
+                        Speaker Notes (+GHS 50)
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="extras" value="animations" style="width: auto; margin-right: 0.5rem;">
+                        Animations & Transitions (+GHS 30)
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="extras" value="handout" style="width: auto; margin-right: 0.5rem;">
+                        Handout Version (+GHS 40)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationDeadline">Deadline *</label>
+                <input type="date" id="presentationDeadline" name="deadline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="presentationBudget">Budget Range (GHS)</label>
+                <select id="presentationBudget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="100-200">GHS 100-200</option>
+                    <option value="200-350">GHS 200-350</option>
+                    <option value="350-500">GHS 350-500</option>
+                    <option value="500+">GHS 500+</option>
+                    <option value="discuss">Let's discuss</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Order Presentation
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Assignment Modal -->
+<div id="assignmentModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closeAssignmentModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Submit Assignment Request</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="assignmentFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="assignmentSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Assignment request submitted! You'll be contacted via WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="assignmentLoadingSpinner"></div>
+        
+        <form id="assignmentForm">
+            <div class="form-group">
+                <label for="assignmentName">Full Name *</label>
+                <input type="text" id="assignmentName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentEmail">Email Address *</label>
+                <input type="email" id="assignmentEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentPhone">Phone Number *</label>
+                <input type="tel" id="assignmentPhone" name="phone" required>
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="assignmentCourse">Course/Subject *</label>
+                <input type="text" id="assignmentCourse" name="course" placeholder="e.g., Introduction to Psychology, Data Structures" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentType">Assignment Type *</label>
+                <select id="assignmentType" name="assignmentType" required>
+                    <option value="">Select assignment type</option>
+                    <option value="essay">Essay</option>
+                    <option value="research-paper">Research Paper</option>
+                    <option value="case-study">Case Study</option>
+                    <option value="lab-report">Lab Report</option>
+                    <option value="book-review">Book Review</option>
+                    <option value="reflection-paper">Reflection Paper</option>
+                    <option value="problem-solving">Problem Solving</option>
+                    <option value="programming">Programming Assignment</option>
+                    <option value="other">Other (specify in details)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentTopic">Assignment Topic/Title *</label>
+                <input type="text" id="assignmentTopic" name="topic" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentLength">Assignment Length *</label>
+                <select id="assignmentLength" name="length" required>
+                    <option value="">Select length</option>
+                    <option value="1-2pages">1-2 pages</option>
+                    <option value="3-5pages">3-5 pages</option>
+                    <option value="6-10pages">6-10 pages</option>
+                    <option value="10+pages">10+ pages</option>
+                    <option value="word-count">By word count</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentWords">Word Count (if applicable)</label>
+                <input type="number" id="assignmentWords" name="words" placeholder="e.g., 1500">
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentDeadline">Deadline *</label>
+                <input type="datetime-local" id="assignmentDeadline" name="deadline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentFormat">Citation Format *</label>
+                <select id="assignmentFormat" name="format" required>
+                    <option value="">Select format</option>
+                    <option value="apa">APA Style</option>
+                    <option value="harvard">Harvard Style</option>
+                    <option value="mla">MLA Style</option>
+                    <option value="chicago">Chicago Style</option>
+                    <option value="other">Other (specify in requirements)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentInstructions">Assignment Instructions & Requirements *</label>
+                <textarea id="assignmentInstructions" name="instructions" rows="6" 
+                    placeholder="Paste the full assignment instructions, rubric, specific requirements, reading materials needed, etc." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentSources">Minimum Number of Sources</label>
+                <select id="assignmentSources" name="sources">
+                    <option value="">Select source count</option>
+                    <option value="no-sources">No sources required</option>
+                    <option value="1-3">1-3 sources</option>
+                    <option value="4-6">4-6 sources</option>
+                    <option value="7-10">7-10 sources</option>
+                    <option value="10+">10+ sources</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignmentBudget">Budget Range (GHS)</label>
+                <select id="assignmentBudget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="50-100">GHS 50-100</option>
+                    <option value="100-200">GHS 100-200</option>
+                    <option value="200-350">GHS 200-350</option>
+                    <option value="350+">GHS 350+</option>
+                    <option value="discuss">Let's discuss</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Submit Assignment Request
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Portfolio Modal -->
+<div id="portfolioModal" class="modal">
+    <div class="modal-content">
+        <button type="button" class="close" onclick="closePortfolioModal()" aria-label="Close">&times;</button>
+        <h2 class="form-title">Build Your Portfolio</h2>
+        
+        <div class="form-progress">
+            <div class="form-progress-bar" id="portfolioFormProgressBar"></div>
+        </div>
+        
+        <div class="success-message" id="portfolioSuccessMessage">
+            <i class="fas fa-check-circle"></i>
+            Portfolio request submitted! You'll be contacted via WhatsApp.
+        </div>
+        
+        <div class="loading-spinner" id="portfolioLoadingSpinner"></div>
+        
+        <form id="portfolioForm">
+            <div class="form-group">
+                <label for="portfolioName">Full Name *</label>
+                <input type="text" id="portfolioName" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioEmail">Email Address *</label>
+                <input type="email" id="portfolioEmail" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioPhone">Phone Number *</label>
+                <input type="tel" id="portfolioPhone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioUniversity">University/Institution *</label>
+                <select id="portfolioUniversity" name="university" required>
+                    <option value="">Select your institution</option>
+                    <option value="university-of-ghana">University of Ghana</option>
+                    <option value="knust">KNUST</option>
+                    <option value="ucc">University of Cape Coast</option>
+                    <option value="ashesi">Ashesi University</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioField">Field/Industry *</label>
+                <select id="portfolioField" name="field" required>
+                    <option value="">Select your field</option>
+                    <option value="computer-science">Computer Science/IT</option>
+                    <option value="business">Business/Management</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="design">Design/Creative</option>
+                    <option value="marketing">Marketing/Communications</option>
+                    <option value="education">Education</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioType">Portfolio Type *</label>
+                <select id="portfolioType" name="portfolioType" required>
+                    <option value="">Select type</option>
+                    <option value="academic">Academic Portfolio</option>
+                    <option value="professional">Professional Portfolio</option>
+                    <option value="creative">Creative Portfolio</option>
+                    <option value="digital">Digital Portfolio/Website</option>
+                    <option value="print">Print Portfolio</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioPurpose">Portfolio Purpose *</label>
+                <select id="portfolioPurpose" name="purpose" required>
+                    <option value="">Select purpose</option>
+                    <option value="job-application">Job Applications</option>
+                    <option value="graduate-school">Graduate School Applications</option>
+                    <option value="freelancing">Freelancing/Client Work</option>
+                    <option value="academic-requirement">Academic Requirement</option>
+                    <option value="personal-branding">Personal Branding</option>
+                    <option value="scholarship">Scholarship Applications</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioProjects">Number of Projects/Pieces *</label>
+                <select id="portfolioProjects" name="projects" required>
+                    <option value="">Select count</option>
+                    <option value="3-5">3-5 pieces</option>
+                    <option value="6-8">6-8 pieces</option>
+                    <option value="9-12">9-12 pieces</option>
+                    <option value="12+">12+ pieces</option>
+                    <option value="not-sure">Not sure</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioExisting">Do you have existing work to include?</label>
+                <select id="portfolioExisting" name="existing">
+                    <option value="">Select option</option>
+                    <option value="yes-many">Yes, I have many projects</option>
+                    <option value="yes-few">Yes, I have a few projects</option>
+                    <option value="yes-raw">Yes, but need help organizing/presenting</option>
+                    <option value="no">No, need to create new work</option>
+                    <option value="partial">Some existing, some new needed</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioServices">Services Needed *</label>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="services" value="content-creation" style="width: auto; margin-right: 0.5rem;">
+                        Content Creation & Writing
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="services" value="design-layout" style="width: auto; margin-right: 0.5rem;">
+                        Design & Layout
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="services" value="project-development" style="width: auto; margin-right: 0.5rem;">
+                        Project Development
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="services" value="case-studies" style="width: auto; margin-right: 0.5rem;">
+                        Case Study Writing
+                    </label>
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" name="services" value="resume-cv" style="width: auto; margin-right: 0.5rem;">
+                        Resume/CV Integration
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioSkills">Key Skills to Highlight *</label>
+                <textarea id="portfolioSkills" name="skills" rows="3" 
+                    placeholder="List the main skills, competencies, and strengths you want to showcase" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioAchievements">Notable Achievements/Awards</label>
+                <textarea id="portfolioAchievements" name="achievements" rows="3" 
+                    placeholder="Academic honors, awards, certifications, recognitions, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioStyle">Style Preference</label>
+                <select id="portfolioStyle" name="style">
+                    <option value="">Select style</option>
+                    <option value="professional">Professional/Corporate</option>
+                    <option value="creative">Creative/Artistic</option>
+                    <option value="modern">Modern/Contemporary</option>
+                    <option value="minimalist">Clean/Minimalist</option>
+                    <option value="academic">Traditional/Academic</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioDeadline">Deadline *</label>
+                <input type="date" id="portfolioDeadline" name="deadline" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioRequirements">Additional Requirements & Details</label>
+                <textarea id="portfolioRequirements" name="requirements" rows="4" 
+                    placeholder="Any specific requirements, examples you like, target audience, special considerations, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolioBudget">Budget Range (GHS)</label>
+                <select id="portfolioBudget" name="budget">
+                    <option value="">Select budget range</option>
+                    <option value="300-500">GHS 300-500</option>
+                    <option value="500-800">GHS 500-800</option>
+                    <option value="800-1200">GHS 800-1200</option>
+                    <option value="1200+">GHS 1200+</option>
+                    <option value="discuss">Let's discuss</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i>
+                Build My Portfolio
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+    <!-- FAQ Section -->
+  <!-- FAQ Section -->
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-header fade-in">
+                    <p>Find answers to common questions about our academic support services</p>
+                </div>
+                
+                <div class="faq-search fade-in">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="faqSearch" placeholder="Search for answers...">
+                </div>
+                
+                <div class="faq-categories fade-in">
+                    <div class="faq-category active" data-category="all">All Questions</div>
+                    <div class="faq-category" data-category="general">General</div>
+                    <div class="faq-category" data-category="services">Services</div>
+                    <div class="faq-category" data-category="payment">Payment</div>
+                    <div class="faq-category" data-category="delivery">Delivery</div>
+                </div>
+                
+                <div class="faq-grid">
+                    <div class="faq-item fade-in" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How long does it take to complete a project?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Project completion time depends on the complexity and length. Typically, we deliver standard projects within 5-7 days, urgent projects in 3-5 days, and rush orders within 24-48 hours. We'll provide an exact timeline after reviewing your requirements.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="services">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you guarantee plagiarism-free work?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Absolutely! All our work is 100% original and plagiarism-free. We provide plagiarism reports upon request and ensure proper citations for all references. We use Turnitin and other professional tools to verify originality before delivery.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What if I'm not satisfied with the work?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                We offer unlimited revisions until you're completely satisfied. Our goal is to exceed your expectations and ensure your academic success. Simply request revisions within 7 days of delivery, and we'll make the necessary adjustments at no extra cost.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do you ensure confidentiality?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Your privacy is our priority. We maintain strict confidentiality, never share your personal information, and all communications are encrypted and secure. We don't store your personal data beyond project completion and follow GDPR-compliant practices.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="payment">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What payment methods do you accept?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                We accept various payment methods including Mobile Money (MTN, Vodafone, AirtelTigo), bank transfers, and other secure payment options convenient for Ghanaian students. Payments are only required after you approve the project outline.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="delivery">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can you help with urgent deadlines?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! We offer emergency services for urgent deadlines. Rush orders (24-48 hours) are available at a premium rate to ensure quality is not compromised. For extremely urgent requests, contact us directly via WhatsApp for immediate assistance.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="services">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you provide topic suggestions for free?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! When you submit our project request form, we provide 1-2 relevant topic suggestions at no cost. These are tailored to your field of study and current academic trends. For more extensive topic research, we offer premium consultation services.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="payment">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What is your pricing structure?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Pricing varies based on project complexity, length, and deadline. Typical rates range from GHS 50-100+ for assignments, GHS 200-300+ for research proposals, and GHS 350-1000+ for full project work. We provide detailed quotes after reviewing your requirements.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="delivery">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How will I receive my completed work?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Completed work is delivered via email or WhatsApp as editable Word documents and PDFs. For presentations, we provide PowerPoint files. We maintain backups for 6 months after delivery.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item fade-in" data-category="services">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can you help with data analysis?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes! Our team includes statistics and data analysis experts. We can assist with SPSS, Excel, R, and Python-based analysis. We provide clear interpretation of results and visualization for your project. This service is available as part of full project packages or as a standalone service.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-no-results fade-in" id="noResultsMessage">
+                    <i class="fas fa-search"></i>
+                    <h3>No matching questions found</h3>
+                    <p>Try different keywords or contact us directly for assistance</p>
+                    <button class="cta-btn" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>Chat with Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Testimonials -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--navy-blue);">What Students Say About FinalFix</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial fade-in">
+                     <img src="FRANK.png" alt="Wiafe Frank" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix helped me complete my project work in record time. The quality was exceptional and they followed all my supervisor's guidelines perfectly.</p>
+                    <div class="testimonial-author">Wiafe Frank</div>
+                    <div class="testimonial-school">University for Development Studies, IT</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="DONKOR.png" alt="Donkor Emmanuel" class="testimonial-image">
+                    <p class="testimonial-text">I was struggling with my research proposal until I found FinalFix. They provided excellent topic suggestions and helped structure my entire proposal.</p>
+                    <div class="testimonial-author">Donkor Emmanuel</div>
+                    <div class="testimonial-school">KNUST, Computer Science</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="AFCOE.png" alt="Bonsu Charlotte" class="testimonial-image">
+                    <p class="testimonial-text">The weekly updates kept me informed throughout the process. Professional, reliable, and delivered exactly what I needed for my defense.</p>
+                    <div class="testimonial-author">Bonsu Charlotte</div>
+                    <div class="testimonial-school">AFCOE, Early Grade Education</div>
+                </div>
+                <div class="testimonial fade-in">
+                    <img src="Kwabena.png" alt="Kwabena Boateng" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix was my academic guardian angel! Their 24/7 support and expert proofreading transformed my research paper from stressful to stellar.</p>
+                    <div class="testimonial-author">Kwabena Boateng</div>
+                    <div class="testimonial-school">University of Cape Coast, Environmental Science</div>
+                </div>
+                <div class="testimonial fade-in">
+                     <img src="JADE 2.png" alt="Efua Ansah" class="testimonial-image">
+                    <p class="testimonial-text">I owe my First-Class honors to FinalFix. Their dissertation coaching and citation rescue saved me during crunch time - worth every cedi!</p>
+                    <div class="testimonial-author">Efua Ansah</div>
+                    <div class="testimonial-school">Ashesi University, Business Analytics </div>
+                </div>
+
+                <div class="testimonial fade-in">
+                     <img src="ABISO.png" alt="Abiso Dzifa Jacqueline" class="testimonial-image">
+                    <p class="testimonial-text">FinalFix created an outstanding portfolio that perfectly showcased my skills. From concept to final design, they captured my professional story beautifully.</p>
+                    <div class="testimonial-author">Abiso Dzifa Jacqueline </div>
+                    <div class="testimonial-school">GIMPA, Public Administration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- ===== MEET OUR TEAM SECTION ===== -->
+        <!-- Add this section after the testimonials section and before why choose us -->
+    <section class="section team-section" id="team">
+        <div class="container">
+            <h2 class="section-title fade-in">Meet Our Expert Team</h2>
+            <div class="team-intro fade-in">
+                <p>Our dedicated team of academic professionals and subject matter experts are committed to your success. With diverse backgrounds and years of experience, we're here to help you achieve your academic goals.</p>
+                <div class="team-stats">
+                    <div class="team-stat">
+                        <span class="team-stat-number">12+</span>
+                        <span class="team-stat-label">Expert Writers</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="team-stat-number">38+</span>
+                        <span class="team-stat-label">Subject Areas</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="team-stat-number">5+</span>
+                        <span class="team-stat-label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                         <img src="Weber.png" alt="Dr.Emmanuel Weber">
+                    </div>
+                    <h3 class="team-name">Dr. Emmanuel Weber</h3>
+                    <p class="team-role">Lead Academic Consultant</p>
+                    <p class="team-bio">PhD in Education with 5+ years of experience helping students excel in research and academic writing.</p>
+                    <div class="team-specialties">
+                        <span class="specialty-tag">Research Methods</span>
+                        <span class="specialty-tag">Education</span>
+                        <span class="specialty-tag">Psychology</span>
+                    </div>
+                <div class="team-contact">
+                    <a href="https://wa.me/233556900119" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:finalfix4u@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                </div>
+
+
+                
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                         <img src="Awudu.png" alt="Awudu Mumuni">
+                    </div>
+                    <h3 class="team-name">Awudu Mumuni</h3>
+                    <p class="team-role">Technical Writing Specialist</p>
+                    <p class="team-bio">MSc Computer Science graduate specializing in technical documentation, software projects, and IT research.</p>
+                    <div class="team-specialties">
+                        <span class="specialty-tag">Computer Science</span>
+                        <span class="specialty-tag">Engineering</span>
+                        <span class="specialty-tag">IT Projects</span>
+                    </div>
+                   <div class="team-contact">
+                    <a href="https://wa.me/233558459602" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:awudu9146@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                         <img src="Grace.png" alt="Grace Owusu">
+                    </div>
+                    <h3 class="team-name">Grace Owusu</h3>
+                    <p class="team-role">Business & Finance Expert</p>
+                    <p class="team-bio">MBA Finance with extensive experience in business research, case studies, and financial analysis projects.</p>
+                    <div class="team-specialties">
+                        <span class="specialty-tag">Business</span>
+                        <span class="specialty-tag">Finance</span>
+                        <span class="specialty-tag">Economics</span>
+                    </div>
+                    <div class="team-contact">
+                    <a href="https://wa.me/233542246620" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:alice0000000009@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                         <img src="Lasher.png" alt="Eric O. Mensah">
+                    </div>
+                    <h3 class="team-name">Eric O. Mensah</h3>
+                    <p class="team-role">Science Research Coordinator</p>
+                    <p class="team-bio">PhD in Biological Sciences, specializing in research methodology, data analysis, and scientific writing.</p>
+                    <div class="team-specialties">
+                        <span class="specialty-tag">Life Sciences</span>
+                        <span class="specialty-tag">Research</span>
+                        <span class="specialty-tag">Data Analysis</span>
+                    </div>
+                    <div class="team-contact">
+                    <a href="https://wa.me/233592991070" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:franknaaro562@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section" id="why-choose">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose FinalFix?</h2>
+            <div class="features-grid">
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div>
+                        <h3>Free Topic Suggestions</h3>
+                        <p>Get relevant, current research topics when you submit our form - tailored to your field of study</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3>Regular Progress Updates</h3>
+                        <p>Stay informed with weekly progress updates and milestone notifications on your project</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div>
+                        <h3>Supervisor Guidelines Compliance</h3>
+                        <p>We strictly follow your supervisor's instructions, formatting requirements, and academic standards</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <h3>24/7 WhatsApp Support</h3>
+                        <p>Friendly, responsive customer support available around the clock via WhatsApp</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3>100% Confidential & Secure</h3>
+                        <p>Your information and work remain completely private with encrypted communications</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h3>Fast & Reliable Delivery</h3>
+                        <p>Quick turnaround times without compromising on quality or attention to detail</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <div>
+                        <h3>Unlimited Revisions</h3>
+                        <p>We work with you until you're completely satisfied with the final result</p>
+                    </div>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Plagiarism-Free Guarantee</h3>
+                        <p>100% original content with proper citations and plagiarism reports provided</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <!-- FIXED CTA Section -->
+    <section class="section cta-section" id="cta">
+        <div class="container">
+            <h2 class="section-title fade-in">Ready to Get Started?</h2>
+            <p class="fade-in" style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--desert-sand);">
+                Get a free research topic and professional consultation when you submit your form today!
+            </p>
+            <div class="cta-buttons">
+                <!-- FIXED: Changed href="#" to href="javascript:void(0)" -->
+                <a href="javascript:void(0)" class="btn-primary" onclick="openGeneralModal()">
+                    <i class="fas fa-edit"></i>
+                    Start Your Project Now
+                </a>
+                <!-- FIXED: Changed href="#" to href="javascript:void(0)" -->
+                <a href="javascript:void(0)" class="btn-secondary" id="main-whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- COMPLETE UPDATED FOOTER SECTION: -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FinalFix</h3>
+                    <p>Your trusted academic support partner for project work, proposals, and assignments in Ghana. We're committed to your academic success.</p>
+                    <div class="social-icons">
+                        <a href="javascript:void(0)" id="social-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:finalfix4u@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="javascript:void(0)" id="social-instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="javascript:void(0)" id="social-facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="javascript:void(0)" id="social-twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#services">Our Services</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="javascript:void(0)" onclick="openGeneralModal()">Submit Request</a>
+                    <a href="javascript:void(0)" id="footer-whatsapp-link">WhatsApp Support</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="javascript:void(0)" onclick="openServiceModal('project')">Project Work</a>
+                    <a href="javascript:void(0)" onclick="openServiceModal('proposal')">Research Proposals</a>
+                    <a href="javascript:void(0)" onclick="openServiceModal('assignment')">Assignments</a>
+                    <a href="javascript:void(0)" onclick="openServiceModal('presentation')">PowerPoint Slides</a>
+                    <a href="javascript:void(0)" onclick="openServiceModal('portfolio')">Portfolio Development</a>
+                    <a href="javascript:void(0)" onclick="openServiceModal('topic')">Topic Generation</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> finalfix4u@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp Business Support</p>
+                    <p><i class="fas fa-clock"></i> Available 24/7</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Serving students across Ghana</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2020-2025 FinalFix. All rights reserved. | <a href="javascript:void(0)" style="color: var(--desert-sand);">Privacy Policy</a> | <a href="javascript:void(0)" style="color: var(--desert-sand);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration
+        const WHATSAPP_NUMBER = "233556900119";
+        const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20FinalFix,%20I%20need%20help%20with%20my%20academic%20work.`;
+        const INSTAGRAM_URL = "https://instagram.com/finalfix.gh";
+        const FACEBOOK_URL = "https://facebook.com/finalfix.gh";
+        const TWITTER_URL = "https://twitter.com/finalfix_gh";
+
+        // Team member contact information
+        const TEAM_CONTACTS = {
+            'dr-sarah': {
+                whatsapp: '233556900119',
+                email: 'sarah.mensah@finalfix.gh',
+                message: 'Hi Dr. Sarah, I need help with research methods and academic writing.'
+            },
+            'michael': {
+                whatsapp: '233556900120',
+                email: 'michael.asante@finalfix.gh', 
+                message: 'Hi Michael, I need help with technical writing and IT projects.'
+            },
+            'grace': {
+                whatsapp: '233556900121',
+                email: 'grace.owusu@finalfix.gh',
+                message: 'Hi Grace, I need help with business and finance projects.'
+            },
+            'dr-kwame': {
+                whatsapp: '233556900122',
+                email: 'kwame.nkrumah@finalfix.gh',
+                message: 'Hi Dr. Kwame, I need help with science research and data analysis.'
+            }
+        };
+
+        // Alert Banner Functions
+        function closeAlertBanner() {
+            const banner = document.getElementById('alertBanner');
+            banner.style.display = 'none';
+            localStorage.setItem('alertBannerClosed', 'true');
+        }
+
+        // Back to Top Functions
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // WhatsApp Functions
+        function openWhatsApp() {
+            window.open(WHATSAPP_URL, '_blank');
+        }
+
+         // Enhanced FAQ Functionality
+        function toggleFAQ(element) {
+        const allQuestions = document.querySelectorAll('.faq-question');
+        const allAnswers = document.querySelectorAll('.faq-answer');
+
+        // Close all other answers
+        allQuestions.forEach(q => {
+            if (q !== element) {
+                q.classList.remove('active');
+                q.querySelector('i').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        allAnswers.forEach(a => {
+            if (a !== element.nextElementSibling) {
+                a.classList.remove('active');
+            }
+        });
+
+        // Toggle the clicked one
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('i');
+
+        const isActive = answer.classList.contains('active');
+        element.classList.toggle('active', !isActive);
+        answer.classList.toggle('active', !isActive);
+        icon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+        
+        // FAQ Search Functionality
+        document.getElementById('faqSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            let visibleCount = 0;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            const noResults = document.getElementById('noResultsMessage');
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        });
+        
+        // FAQ Category Filter
+        document.querySelectorAll('.faq-category').forEach(category => {
+            category.addEventListener('click', function() {
+                // Update active category
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                const selectedCategory = this.dataset.category;
+                const faqItems = document.querySelectorAll('.faq-item');
+                let visibleCount = 0;
+                
+                faqItems.forEach(item => {
+                    if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide no results message
+                const noResults = document.getElementById('noResultsMessage');
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        });
+        
+        // WhatsApp function
+        function openWhatsApp() {
+            window.open('https://wa.me/233556900119', '_blank');
+        }
+        
+        // Initialize FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open first FAQ by default on mobile
+            if (window.innerWidth <= 768) {
+                const firstFaq = document.querySelector('.faq-question');
+                if (firstFaq) toggleFAQ(firstFaq);
+            }
+        });
+
+
+
+
+// Modal control functions for each service
+function openProjectModal() {
+    document.getElementById('projectModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    setMinDate('projectDeadline');
+    addProgressTracking('projectForm', 'projectFormProgressBar');
+}
+
+function closeProjectModal() {
+    document.getElementById('projectModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openProposalModal() {
+    document.getElementById('proposalModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    setMinDate('proposalDeadline');
+    addProgressTracking('proposalForm', 'proposalFormProgressBar');
+}
+
+function closeProposalModal() {
+    document.getElementById('proposalModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openTopicModal() {
+    document.getElementById('topicModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    addProgressTracking('topicForm', 'topicFormProgressBar');
+}
+
+function closeTopicModal() {
+    document.getElementById('topicModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openPresentationModal() {
+    document.getElementById('presentationModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    setMinDate('presentationDeadline');
+    addProgressTracking('presentationForm', 'presentationFormProgressBar');
+}
+
+function closePresentationModal() {
+    document.getElementById('presentationModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openAssignmentModal() {
+    document.getElementById('assignmentModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    setMinDateTime('assignmentDeadline');
+    addProgressTracking('assignmentForm', 'assignmentFormProgressBar');
+}
+
+function closeAssignmentModal() {
+    document.getElementById('assignmentModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function openPortfolioModal() {
+    document.getElementById('portfolioModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    setMinDate('portfolioDeadline');
+    addProgressTracking('portfolioForm', 'portfolioFormProgressBar');
+}
+
+function closePortfolioModal() {
+    document.getElementById('portfolioModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Helper functions
+function setMinDate(fieldId) {
+    const field = document.getElementById(fieldId);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    field.min = tomorrow.toISOString().split('T')[0];
+}
+
+function setMinDateTime(fieldId) {
+    const field = document.getElementById(fieldId);
+    const now = new Date();
+    now.setHours(now.getHours() + 2); // Minimum 2 hours from now
+    field.min = now.toISOString().slice(0, 16);
+}
+
+function addProgressTracking(formId, progressBarId) {
+    const form = document.getElementById(formId);
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            updateFormProgress(formId, progressBarId);
+        });
+    });
+}
+
+// Updated service button handlers
+function updateServiceButtons() {
+    // Update the existing service buttons to use new modals
+    const serviceButtons = [
+        { selector: '[onclick*="openServiceModal(\'project\')"]', newFunction: 'openProjectModal()' },
+        { selector: '[onclick*="openServiceModal(\'proposal\')"]', newFunction: 'openProposalModal()' },
+        { selector: '[onclick*="openServiceModal(\'topic\')"]', newFunction: 'openTopicModal()' },
+        { selector: '[onclick*="openServiceModal(\'presentation\')"]', newFunction: 'openPresentationModal()' },
+        { selector: '[onclick*="openServiceModal(\'assignment\')"]', newFunction: 'openAssignmentModal()' },
+        { selector: '[onclick*="openServiceModal(\'portfolio\')"]', newFunction: 'openPortfolioModal()' }
+    ];
+
+    serviceButtons.forEach(({ selector, newFunction }) => {
+        const buttons = document.querySelectorAll(selector);
+        buttons.forEach(button => {
+            button.setAttribute('onclick', newFunction);
+        });
+    });
+}
+
+// Form submission handlers for each service
+document.getElementById('projectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    const message = `
+🎓 *Project Work Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Level: ${data.level}
+• Program: ${data.program}
+
+📋 *Project Details:*
+• Type: ${data.projectType}
+• Chapters: ${data.chapters}
+• Topic: ${data.topic || 'Need topic suggestions'}
+• Pages: ${data.pages}
+• Deadline: ${data.deadline}
+• Format: ${data.format}
+
+📝 *Requirements:*
+${data.requirements}
+
+💰 *Budget:* ${data.budget || 'To be discussed'}
+
+Please provide a detailed quote and timeline. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'projectSuccessMessage', 'projectLoadingSpinner');
+});
+
+document.getElementById('proposalForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    const message = `
+🎓 *Research Proposal Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Level: ${data.level}
+• Field: ${data.field}
+
+📋 *Proposal Details:*
+• Type: ${data.proposalType}
+• Topic: ${data.topic || 'Need topic suggestions'}
+• Research Area: ${data.researchArea}
+• Methodology: ${data.methodology || 'Need guidance'}
+• Pages: ${data.pages}
+• Deadline: ${data.deadline}
+
+📝 *Requirements:*
+${data.requirements}
+
+💰 *Budget:* ${data.budget || 'To be discussed'}
+
+Please provide a quote and timeline. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'proposalSuccessMessage', 'proposalLoadingSpinner');
+});
+
+document.getElementById('topicForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    const message = `
+🎓 *Topic Generation Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Level: ${data.level}
+• Field: ${data.field}
+
+📋 *Topic Requirements:*
+• Project Type: ${data.projectType}
+• Areas of Interest: ${data.interests}
+• Research Scope: ${data.scope || 'No preference'}
+• Topics to Avoid: ${data.avoid || 'None specified'}
+• Number of Topics: ${data.topicCount || '3 topics (Free)'}
+• Deadline: ${data.deadline || 'Within 24 hours'}
+
+Please provide relevant topic suggestions. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'topicSuccessMessage', 'topicLoadingSpinner');
+});
+
+document.getElementById('presentationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    const extras = Array.from(formData.getAll('extras')).join(', ') || 'None';
+    
+    const message = `
+🎓 *PowerPoint Presentation Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+
+📋 *Presentation Details:*
+• Type: ${data.presentationType}
+• Topic: ${data.topic}
+• Duration: ${data.duration}
+• Slides: ${data.slides || 'Not specified'}
+• Style: ${data.style || 'No preference'}
+• Extras: ${extras}
+• Deadline: ${data.deadline}
+
+📝 *Content Requirements:*
+${data.content}
+
+💰 *Budget:* ${data.budget || 'To be discussed'}
+
+Please provide a quote and timeline. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'presentationSuccessMessage', 'presentationLoadingSpinner');
+});
+
+document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    const message = `
+🎓 *Assignment Help Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Course: ${data.course}
+
+📋 *Assignment Details:*
+• Type: ${data.assignmentType}
+• Topic: ${data.topic}
+• Length: ${data.length}
+• Word Count: ${data.words || 'Not specified'}
+• Deadline: ${data.deadline}
+• Format: ${data.format}
+• Sources: ${data.sources || 'Not specified'}
+
+📝 *Instructions:*
+${data.instructions}
+
+💰 *Budget:* ${data.budget || 'To be discussed'}
+
+Please provide a quote and timeline. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'assignmentSuccessMessage', 'assignmentLoadingSpinner');
+});
+
+document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    const services = Array.from(formData.getAll('services')).join(', ') || 'Not specified';
+    
+    const message = `
+🎓 *Portfolio Development Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Field: ${data.field}
+
+📋 *Portfolio Details:*
+• Type: ${data.portfolioType}
+• Purpose: ${data.purpose}
+• Projects: ${data.projects}
+• Existing Work: ${data.existing || 'Not specified'}
+• Services Needed: ${services}
+• Style: ${data.style || 'No preference'}
+• Deadline: ${data.deadline}
+
+📝 *Key Information:*
+• Skills to Highlight: ${data.skills}
+• Achievements: ${data.achievements || 'None specified'}
+• Additional Requirements: ${data.requirements || 'None'}
+
+💰 *Budget:* ${data.budget || 'To be discussed'}
+
+Please provide a detailed quote and timeline. Thank you!
+    `.trim();
+    
+    submitServiceForm(this, message, 'portfolioSuccessMessage', 'portfolioLoadingSpinner');
+});
+
+// Generic form submission function
+function submitServiceForm(form, message, successId, loadingId) {
+    const submitBtn = form.querySelector('.submit-btn');
+    const loadingSpinner = document.getElementById(loadingId);
+    const successMessage = document.getElementById(successId);
+    
+    // Show loading state
+    submitBtn.style.display = 'none';
+    if (loadingSpinner) loadingSpinner.style.display = 'block';
+    
+    setTimeout(() => {
+        // Hide loading
+        if (loadingSpinner) loadingSpinner.style.display = 'none';
+        
+        // Show success message
+        if (successMessage) {
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Send to WhatsApp
+        const whatsappUrl = `https://wa.me/233556900119?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        // Reset form and close modal
+        setTimeout(() => {
+            form.reset();
+            submitBtn.style.display = 'block';
+            
+            // Close the appropriate modal
+            const modalId = form.closest('.modal').id;
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 2000);
+    }, 1500);
+}
+
+// Close modals when clicking outside
+window.addEventListener('click', function(event) {
+    const modals = ['projectModal', 'proposalModal', 'topicModal', 'presentationModal', 'assignmentModal', 'portfolioModal'];
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateServiceButtons();
+});
+
+
+        // Form Progress Functions
+        function updateFormProgress(formId, progressBarId) {
+            const form = document.getElementById(formId);
+            const progressBar = document.getElementById(progressBarId);
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            
+            let filledInputs = 0;
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    filledInputs++;
+                }
+            });
+            
+            const progress = (filledInputs / inputs.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // General modal functionality
+        function openGeneralModal() {
+            const modal = document.getElementById('generalModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Set minimum date for deadline field
+            const deadlineField = document.getElementById('generalDeadline');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            deadlineField.min = tomorrow.toISOString().split('T')[0];
+            
+            // Add form progress tracking
+            const form = document.getElementById('generalForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    updateFormProgress('generalForm', 'formProgressBar');
+                });
+            });
+        }
+
+        function closeGeneralModal() {
+            const modal = document.getElementById('generalModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Service modal functionality
+        function openServiceModal(serviceType) {
+            const modal = document.getElementById('serviceModal');
+            const serviceTypeSelect = document.getElementById('serviceType');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            // Set the service type based on which card was clicked
+            const serviceMap = {
+                'project': 'project-work',
+                'proposal': 'research-proposal',
+                'topic': 'topic-generation',
+                'presentation': 'presentation',
+                'assignment': 'assignment',
+                'portfolio': 'portfolio'
+            };
+            
+            const titleMap = {
+                'project': 'Request Project Work Help',
+                'proposal': 'Request Research Proposal Help',
+                'topic': 'Get Topic Suggestions',
+                'presentation': 'Order PowerPoint Slides',
+                'assignment': 'Submit Assignment Request',
+                'portfolio': 'Build Your Portfolio'
+            };
+            
+            serviceTypeSelect.value = serviceMap[serviceType] || '';
+            modalTitle.textContent = titleMap[serviceType] || 'Request Service';
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Set minimum date for deadline field
+            const deadlineField = document.getElementById('deadline');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            deadlineField.min = tomorrow.toISOString().split('T')[0];
+            
+            // Add form progress tracking
+            const form = document.getElementById('serviceForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    updateFormProgress('serviceForm', 'serviceFormProgressBar');
+                });
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const serviceModal = document.getElementById('serviceModal');
+            const generalModal = document.getElementById('generalModal');
+            
+            if (event.target == serviceModal) {
+                closeModal();
+            }
+            if (event.target == generalModal) {
+                closeGeneralModal();
+            }
+        }
+
+        // Enhanced form submission with loading and success states
+        function submitFormWithEnhancement(form, data) {
+            const submitBtn = form.querySelector('.submit-btn');
+            const loadingSpinner = form.querySelector('.loading-spinner') || document.getElementById('loadingSpinner');
+            const successMessage = form.querySelector('.success-message') || document.getElementById('successMessage');
+            
+            // Show loading state
+            submitBtn.style.display = 'none';
+            if (loadingSpinner) loadingSpinner.style.display = 'block';
+            
+            // Create WhatsApp message
+            const message = `
+🎓 *New Academic Request - FinalFix*
+
+👤 *Student Information:*
+• Name: ${data.name}
+• Email: ${data.email}
+• Phone: ${data.phone}
+• University: ${data.university}
+• Level: ${data.level}
+• Program: ${data.program}
+
+📋 *Service Details:*
+• Service Type: ${data.serviceType}
+• Topic: ${data.topic || 'Need topic suggestions'}
+• Deadline: ${data.deadline}
+• Urgency: ${data.urgency}
+• Pages: ${data.pages || 'Not specified'}
+• Budget: ${data.budget || 'To be discussed'}
+
+📝 *Requirements:*
+${data.requirements}
+
+🔄 *Updates Preference:* ${data.updates}
+
+Please respond with a quote and timeline. Thank you!
+            `.trim();
+            
+            // Simulate processing time
+            setTimeout(() => {
+                // Hide loading
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                
+                // Show success message
+                if (successMessage) {
+                    successMessage.style.display = 'block';
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 3000);
+                }
+                
+                // Send to WhatsApp
+                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                // Reset form and close modal
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.style.display = 'block';
+                    
+                    if (form.id === 'generalForm') {
+                        closeGeneralModal();
+                    } else {
+                        closeModal();
+                    }
+                }, 2000);
+            }, 1500);
+        }
+
+        // General form submission
+        document.getElementById('generalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            submitFormWithEnhancement(this, data);
+        });
+
+        // Service form submission
+        document.getElementById('serviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            submitFormWithEnhancement(this, data);
+        });
+
+        // Header scroll effect and back-to-top visibility
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('visible');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#' && !this.onclick) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate counters
+                    if (entry.target.classList.contains('stat-item')) {
+                        animateCounter(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced counter animation
+        function animateCounter(statItem) {
+            const counter = statItem.querySelector('.counter');
+            if (!counter || counter.classList.contains('animated')) return;
+            
+            counter.classList.add('animated');
+            const target = counter.textContent;
+            const isPercentage = target.includes('%');
+            const isTime = target.includes('hrs') || target.includes('/7');
+            
+            let endValue;
+            if (isPercentage) {
+                endValue = parseInt(target);
+            } else if (isTime) {
+                return; // Skip animation for time values
+            } else {
+                endValue = parseInt(target.replace('+', ''));
+            }
+            
+            let startValue = 0;
+            const duration = 2000;
+            const increment = endValue / (duration / 16);
+            
+            const timer = setInterval(() => {
+                startValue += increment;
+                if (startValue >= endValue) {
+                    counter.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    const current = Math.floor(startValue);
+                    counter.textContent = isPercentage ? `${current}%` : `${current}${target.includes('+') ? '+' : ''}`;
+                }
+            }, 16);
+        }
+
+        // WhatsApp button event listeners
+        const whatsappButtons = ['whatsapp-btn', 'main-whatsapp-btn', 'footer-whatsapp-link'];
+
+        whatsappButtons.forEach(id => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openWhatsApp();
+                });
+            }
+        });
+
+        // Enhanced mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        mobileMenu.querySelector('i').classList.add('fa-bars');
+                        mobileMenu.querySelector('i').classList.remove('fa-times');
+                    }
+                });
+            });
+        }
+
+        // Social Media Links
+        const socialButtons = [
+            { id: 'social-whatsapp', url: WHATSAPP_URL },
+            { id: 'social-instagram', url: INSTAGRAM_URL },
+            { id: 'social-facebook', url: FACEBOOK_URL },
+            { id: 'social-twitter', url: TWITTER_URL }
+        ];
+
+        socialButtons.forEach(({ id, url }) => {
+            const button = document.getElementById(id);
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open(url, '_blank');
+                });
+            }
+        });
+
+        // Form validation enhancements
+        function validateForm(form) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--warning-red)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = 'var(--success-green)';
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Enhanced form input handling
+        document.querySelectorAll('form input, form select, form textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required')) {
+                    if (this.value.trim()) {
+                        this.style.borderColor = 'var(--success-green)';
+                    } else {
+                        this.style.borderColor = 'var(--warning-red)';
+                    }
+                }
+            });
+            
+            field.addEventListener('focus', function() {
+                this.style.borderColor = 'var(--desert-sand)';
+            });
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', function(e) {
+            // Close modals with Escape key
+            if (e.key === 'Escape') {
+                const generalModal = document.getElementById('generalModal');
+                const serviceModal = document.getElementById('serviceModal');
+                
+                if (generalModal.style.display === 'block') {
+                    closeGeneralModal();
+                }
+                if (serviceModal.style.display === 'block') {
+                    closeModal();
+                }
+            }
+        });
+
+        // Performance optimization - Lazy load images
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Auto-hide alert banner after 10 seconds
+        setTimeout(() => {
+            const banner = document.getElementById('alertBanner');
+            if (banner && !localStorage.getItem('alertBannerClosed')) {
+                banner.style.animation = 'slideUp 0.5s ease forwards';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 500);
+            }
+        }, 10000);
+
+        // Add slideUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                to {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-100%);
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .nav-menu.active {
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: var(--navy-blue);
+                    padding: 1rem;
+                    box-shadow: var(--shadow);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if alert banner was previously closed
+            if (localStorage.getItem('alertBannerClosed')) {
+                document.getElementById('alertBanner').style.display = 'none';
+            }
+            
+            // Initialize form progress bars
+            updateFormProgress('generalForm', 'formProgressBar');
+            updateFormProgress('serviceForm', 'serviceFormProgressBar');
+            
+            console.log('Enhanced FinalFix website loaded successfully!');
+        });
+
+        // Service Worker for offline functionality (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+
+        // Google Analytics tracking (placeholder)
+        function trackEvent(eventName, eventData) {
+            // Add your analytics tracking code here
+            console.log('Event tracked:', eventName, eventData);
+        }
+
+        // Track form submissions
+        document.getElementById('generalForm').addEventListener('submit', function() {
+            trackEvent('form_submission', { form_type: 'general' });
+        });
+
+        document.getElementById('serviceForm').addEventListener('submit', function() {
+            trackEvent('form_submission', { form_type: 'service' });
+        });
+
+        // Track WhatsApp clicks
+        document.querySelectorAll('[id*="whatsapp"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                trackEvent('whatsapp_click', { source: this.id });
+            });
+        });
+
+
+        // Enhanced close functions that prevent default behavior
+function closeGeneralModal(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    const modal = document.getElementById('generalModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function closeModal(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    const modal = document.getElementById('serviceModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// SOLUTION 3: Alternative - Use event listeners instead of onclick
+document.addEventListener('DOMContentLoaded', function() {
+    // Close buttons event listeners
+    const generalCloseBtn = document.querySelector('#generalModal .close');
+    const serviceCloseBtn = document.querySelector('#serviceModal .close');
+    
+    if (generalCloseBtn) {
+        generalCloseBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeGeneralModal();
+        });
+    }
+    
+    if (serviceCloseBtn) {
+        serviceCloseBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeModal();
+        });
+    }
+});
+
+
+
+    </script>
+</body>
+</html>
